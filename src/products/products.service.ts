@@ -49,6 +49,12 @@ export class ProductsService {
     return product;
   }
 
+  async findManyByIds(ids: number[]) {
+    return this.prisma.product.findMany({
+      where: { id: { in: ids }, available: true },
+    });
+  }
+
   async update(id: number, updateProductDto: UpdateProductDto) {
 
     const { id: _, ...data} = updateProductDto;

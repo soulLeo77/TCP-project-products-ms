@@ -27,6 +27,11 @@ export class ProductsController {
     return this.productsService.findOne(+id);
   }
 
+  @MessagePattern({ cmd: 'find_many_by_ids' })
+  findManyByIds(@Payload('ids') ids: number[]) {
+    return this.productsService.findManyByIds(ids);
+  }
+
   // @Patch(':id')
   @MessagePattern({ cmd: 'update' })
   update(
